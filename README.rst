@@ -18,6 +18,12 @@ Installation
 
 coming soon...
 
+Dependence libraries
+--------------------
+
+* Django
+* social-auth-app-django
+
 Author
 ------
 
@@ -26,4 +32,4 @@ nnsnodnb
 LICENSE
 -------
 
-Copyright (c) 2017 Yuya Oka Released under the MIT license (see `LICENSE <LICENSE>`__)
+Copyright (c) 2018 Yuya Oka Released under the MIT license (see `LICENSE <LICENSE>`__)
