@@ -51,6 +51,7 @@ setup(
         '': [
                 'README.rst',
                 'requirements.txt',
+                'LICENSE',
             ]
     },
     zip_safe=False,
