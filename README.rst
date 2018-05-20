@@ -1,3 +1,15 @@
+.. image:: https://badge.fury.io/py/twitter-oauth-django.svg
+    :target: https://pypi.org/project/twitter-oauth-django
+.. image:: https://img.shields.io/pypi/pyversions/twitter-oauth-django.svg
+   :target: https://pypi.org/project/twitter-oauth-django
+.. image:: https://img.shields.io/pypi/wheel/twitter-oauth-django.svg
+   :target: https://pypi.org/project/twitter-oauth-django
+.. image:: https://img.shields.io/pypi/format/twitter-oauth-django.svg
+   :target: https://pypi.org/project/twitter-oauth-django
+.. image:: https://img.shields.io/pypi/l/twitter-oauth-django.svg
+   :target: https://pypi.org/project/twitter-oauth-django
+
+
 twitter-oauth-django
 ====================
 
