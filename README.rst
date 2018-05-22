@@ -1,3 +1,5 @@
+.. image:: https://travis-ci.org/nnsnodnb/twitter-oauth-django.svg?branch=master
+    :target: https://travis-ci.org/nnsnodnb/twitter-oauth-django
 .. image:: https://badge.fury.io/py/twitter-oauth-django.svg
     :target: https://pypi.org/project/twitter-oauth-django
 .. image:: https://img.shields.io/pypi/pyversions/twitter-oauth-django.svg
