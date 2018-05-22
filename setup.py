@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 import os.path
 
 
-NAME = 'twitter-oauth-django'
+NAME = 'twitter-oauth-ios-django'
 VERSION = '0.1.0'
 
 

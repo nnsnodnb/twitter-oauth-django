@@ -1,9 +1,13 @@
+from django.conf import settings
+from django.test.utils import get_runner
+
+import django
+import optparse
 import os
 import sys
 
 
 def parse_args():
-    import optparse
     parser = optparse.OptionParser()
     parser.add_option('--where', default=None)
     opts, args = parser.parse_args()
@@ -15,10 +19,10 @@ def run_tests(base_dir=None, apps=None, verbosity=1, interactive=False):
     os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
     sys.path.insert(0, os.path.join(base_dir, 'tests'))
 
-    from django.conf import settings
-    from django.test.utils import get_runner
-    TestRunner = get_runner(settings)
-    test_runner = TestRunner(
+    django.setup()
+
+    test_runner_class = get_runner(settings)
+    test_runner = test_runner_class(
             verbosity=verbosity,
             interavtive=interactive,
             failfast=False)

@@ -11,10 +11,11 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'test_db.sqlite3'
+        'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
     }
 }
 
@@ -40,6 +41,8 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+ROOT_URLCONF = 'tests.urls'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -64,7 +67,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'twitter_oauth_ios',
+    'social_django',
+    'twitter_oauth_ios.apps.TwitterOauthIosConfig',
     'twitter_oauth_ios.tests'
 )
 

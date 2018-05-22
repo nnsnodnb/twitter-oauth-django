@@ -1,6 +1,6 @@
 [report]
 include =
-    twitter_oauth_ios/.py
+    twitter_oauth_ios/*.py
 omit =
     twitter_oauth_ios/__init__.py
     twitter_oauth_ios/migrations/*.py
