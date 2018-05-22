@@ -15,7 +15,7 @@ class AuthView(View):
     user_model = get_user_model()
 
     def put(self, request, *args, **kwargs):
-        body = json.loads(request.body)
+        body = json.loads(request.body.decode('utf-8'))
         body['auth_time'] = int(datetime.now().strftime('%s'))
         form = self.form_class(body)
 

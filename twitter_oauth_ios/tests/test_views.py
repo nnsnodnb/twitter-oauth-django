@@ -43,7 +43,7 @@ class TestAuthView(TestCase):
         request.content_type = 'application/json'
         response = self.auth_view(request)
 
-        self.assertEqual(json.loads(response.content), {'result': 'error'})
+        self.assertEqual(json.loads(response.content.decode('utf-8')), {'result': 'error'})
         self.assertEqual(response.status_code, 400)
 
     def test_success_create_put(self):
@@ -51,7 +51,7 @@ class TestAuthView(TestCase):
         request.content_type = 'application/json'
         response = self.auth_view(request)
 
-        self.assertEqual(json.loads(response.content), {'result': 'success'})
+        self.assertEqual(json.loads(response.content.decode('utf-8')), {'result': 'success'})
         self.assertEqual(response.status_code, 200)
 
     def test_success_update_put(self):
@@ -84,5 +84,5 @@ class TestAuthView(TestCase):
         request.content_type = 'application/json'
         response = self.auth_view(request)
 
-        self.assertEqual(json.loads(response.content), {'result': 'success'})
+        self.assertEqual(json.loads(response.content.decode('utf-8')), {'result': 'success'})
         self.assertEqual(response.status_code, 200)
