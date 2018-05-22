@@ -5,7 +5,7 @@ import os.path
 
 
 NAME = 'twitter-oauth-ios-django'
-VERSION = '0.1.0'
+VERSION = '1.0.0'
 
 
 def read(filename):
