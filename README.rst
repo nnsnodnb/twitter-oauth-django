@@ -1,15 +1,17 @@
-.. image:: https://travis-ci.org/nnsnodnb/twitter-oauth-django.svg?branch=master
+.. image:: https://travis-ci.org/nnsnodnb/twitter-oauth-django.svg?branch=travis
     :target: https://travis-ci.org/nnsnodnb/twitter-oauth-django
-.. image:: https://badge.fury.io/py/twitter-oauth-django.svg
-    :target: https://pypi.org/project/twitter-oauth-django
-.. image:: https://img.shields.io/pypi/pyversions/twitter-oauth-django.svg
-   :target: https://pypi.org/project/twitter-oauth-django
-.. image:: https://img.shields.io/pypi/wheel/twitter-oauth-django.svg
-   :target: https://pypi.org/project/twitter-oauth-django
-.. image:: https://img.shields.io/pypi/format/twitter-oauth-django.svg
-   :target: https://pypi.org/project/twitter-oauth-django
-.. image:: https://img.shields.io/pypi/l/twitter-oauth-django.svg
-   :target: https://pypi.org/project/twitter-oauth-django
+.. image:: https://coveralls.io/repos/github/nnsnodnb/twitter-oauth-django/badge.svg?branch=travis
+    :target: https://coveralls.io/github/nnsnodnb/twitter-oauth-django?branch=travis
+.. image:: https://badge.fury.io/py/twitter-oauth-ios-django.svg
+    :target: https://pypi.org/project/twitter-oauth-ios-django
+.. image:: https://img.shields.io/pypi/pyversions/twitter-oauth-ios-django.svg
+   :target: https://pypi.org/project/twitter-oauth-ios-django
+.. image:: https://img.shields.io/pypi/wheel/twitter-oauth-ios-django.svg
+   :target: https://pypi.org/project/twitter-oauth-ios-django
+.. image:: https://img.shields.io/pypi/format/twitter-oauth-ios-django.svg
+   :target: https://pypi.org/project/twitter-oauth-ios-django
+.. image:: https://img.shields.io/pypi/l/twitter-oauth-ios-django.svg
+   :target: https://pypi.org/project/twitter-oauth-ios-django
 
 
 twitter-oauth-django
@@ -30,7 +32,30 @@ Supported django versions
 Installation
 ------------
 
-coming soon...
+.. code:: bash
+
+    $ pip install twitter-oauth-ios-django
+
+Add ``twitter_oauth_ios`` into ``INSTALLED_APPS`` in your ``settings.py`` file
+
+.. code:: python
+
+    INSTALLED_APPS = [
+        ...,
+        'social_django',
+        'twitter_oauth_ios',
+    ]
+
+Add ``twitter_oauth_ios`` routing in ``urls.py`` file
+
+.. code:: python
+
+    from django.urls import include, path
+
+    urlpatterns = [
+        ...,
+        path('twitter_oauth/', include('twitter_oauth_ios.urls', namespace='twitter_oauth_ios')),
+    ]
 
 Dependence libraries
 --------------------
