@@ -57,6 +57,23 @@ Add ``twitter_oauth_ios`` routing in ``urls.py`` file
         path('twitter_oauth/', include('twitter_oauth_ios.urls', namespace='twitter_oauth_ios')),
     ]
 
+Sample request
+--------------
+
+.. code:: bash
+
+    $ curl -X PUT http://example.com/twitter_oauth/ \
+        -H "Content-Type: application/json" \
+        -H "Accept: application/json" \
+        -d \
+        "{
+            'user_id': 1111111111,
+            'oauth_token': '1111111111-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+            'oauth_token_secret': 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+            'screen_name': 'sample_screen_name',
+            'display_name': 'display_name'
+         }",
+
 Dependence libraries
 --------------------
 
