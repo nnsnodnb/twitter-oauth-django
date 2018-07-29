@@ -13,7 +13,7 @@ def get_display_name(user_id, oauth_token, oauth_token_secret):
     )
 
     response = requests.get(
-        f'https://api.twitter.com/1.1/users/show.json?user_id={user_id}',
+        'https://api.twitter.com/1.1/users/show.json?user_id={}'.format(user_id),
         auth=oauth
     ).json()
 
