@@ -54,11 +54,11 @@ class AuthView(View):
             'access_token': {
                 'oauth_token': form.data['oauth_token'],
                 'oauth_token_secret': form.data['oauth_token_secret'],
-                'user_id': form.data['user_id'],
+                'user_id': int(form.data['user_id']),
                 'screen_name': form.data['screen_name']
             }
         }
-        social_auth = UserSocialAuth(user=user, provider='twitter', uid=form.data['user_id'], extra_data=extra_data)
+        social_auth = UserSocialAuth(user=user, provider='twitter', uid=int(form.data['user_id']), extra_data=extra_data)
         social_auth.save()
 
         return JsonResponse({'result': 'success'})
