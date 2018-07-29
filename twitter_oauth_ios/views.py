@@ -25,7 +25,7 @@ class AuthView(View):
 
         social_auth = UserSocialAuth.get_social_auth(provider='twitter', uid=form.data['user_id'])
 
-        display_name = get_display_name(social_auth.user.id, form.data['oauth_token'], form.data['oauth_token_secret'])
+        display_name = get_display_name(form.data['user_id'], form.data['oauth_token'], form.data['oauth_token_secret'])
 
         if social_auth:
             user = social_auth.user
