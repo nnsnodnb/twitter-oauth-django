@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from social_django.models import UserSocialAuth
 from .forms import TwitterAuthForm
+from .utils import get_display_name
 
 import json
 
@@ -24,10 +25,12 @@ class AuthView(View):
 
         social_auth = UserSocialAuth.get_social_auth(provider='twitter', uid=form.data['user_id'])
 
+        display_name = get_display_name(social_auth.user.id, form.data['oauth_token'], form.data['oauth_token_secret'])
+
         if social_auth:
             user = social_auth.user
             user.username = form.data['screen_name']
-            user.first_name = form.data['display_name']
+            user.first_name = display_name
             user.save()
             social_auth.user = user
 
@@ -42,7 +45,7 @@ class AuthView(View):
 
         user = self.user_model.objects.create_user(
             username=form.data['screen_name'],
-            first_name=form.data['display_name'],
+            first_name=display_name,
             is_active=True)
         user.save()
 

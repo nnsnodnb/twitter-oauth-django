@@ -6,6 +6,7 @@ from django.test.client import RequestFactory
 from django.urls import reverse
 from social_django.models import UserSocialAuth
 from twitter_oauth_ios.views import AuthView
+from unittest.mock import patch, Mock
 
 import json
 
@@ -23,7 +24,6 @@ class TestAuthView(TestCase):
             "oauth_token": "1111111111-this_is_test_oauth_token",
             "oauth_token_secret": "this_is_test_oauth_token_secret",
             "screen_name": "test_screen_name",
-            "display_name": "test_display_name"
         }
 
     def tearDown(self):
@@ -47,17 +47,10 @@ class TestAuthView(TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_success_create_put(self):
-        request = self.factory.put(self.endpoint, json.dumps(self.parameter))
-        request.content_type = 'application/json'
-        response = self.auth_view(request)
 
-        self.assertEqual(json.loads(response.content.decode('utf-8')), {'result': 'success'})
-        self.assertEqual(response.status_code, 200)
-
-    def test_success_update_put(self):
         user = self.user_model.objects.create_user(
             username=self.parameter['screen_name'],
-            first_name=self.parameter['display_name'],
+            first_name='This is display_name',
             is_active=True
         )
         user.save()
@@ -80,9 +73,52 @@ class TestAuthView(TestCase):
         )
         user_social_auth.save()
 
-        request = self.factory.put(self.endpoint, json.dumps(self.parameter))
-        request.content_type = 'application/json'
-        response = self.auth_view(request)
+        with patch('requests.get') as patcher:
+            mock_json = Mock()
+            mock_json.json.return_value = {'name': 'This is display_name'}
+            patcher.return_value = mock_json
+
+            request = self.factory.put(self.endpoint, json.dumps(self.parameter))
+            request.content_type = 'application/json'
+
+            response = self.auth_view(request)
+            self.assertEqual(json.loads(response.content.decode('utf-8')), {'result': 'success'})
+            self.assertEqual(response.status_code, 200)
+
+    def test_success_update_put(self):
+        user = self.user_model.objects.create_user(
+            username=self.parameter['screen_name'],
+            first_name='This is display_name',
+            is_active=True
+        )
+        user.save()
+
+        extra_data = {
+            'auth_time': int(datetime.now().strftime('%s')),
+            'id': self.parameter['user_id'],
+            'access_token': {
+                'oauth_token': self.parameter['oauth_token'],
+                'oauth_token_secret': self.parameter['oauth_token_secret'],
+                'user_id': self.parameter['user_id'],
+                'screen_name': self.parameter['screen_name']
+            }
+        }
+        user_social_auth = UserSocialAuth(
+            user=user,
+            provider='twitter',
+            uid=self.parameter['user_id'],
+            extra_data=extra_data
+        )
+        user_social_auth.save()
+
+        with patch('requests.get') as patcher:
+            mock_json = Mock()
+            mock_json.json.return_value = {'name': 'This is display_name'}
+            patcher.return_value = mock_json
+
+            request = self.factory.put(self.endpoint, json.dumps(self.parameter))
+            request.content_type = 'application/json'
+            response = self.auth_view(request)
 
         self.assertEqual(json.loads(response.content.decode('utf-8')), {'result': 'success'})
         self.assertEqual(response.status_code, 200)

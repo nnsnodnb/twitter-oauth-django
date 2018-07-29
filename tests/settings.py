@@ -80,3 +80,6 @@ TEST_RUNNER = 'twitter_oauth_ios.tests.test_runner.TestRunner'
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+SOCIAL_AUTH_TWITTER_KEY = ''
+SOCIAL_AUTH_TWITTER_SECRET = ''

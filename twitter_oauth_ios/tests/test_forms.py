@@ -13,7 +13,6 @@ class TestTwitterAuthForm(TestCase):
             "oauth_token": "1111111111-this_is_test_oauth_token",
             "oauth_token_secret": "this_is_test_oauth_token_secret",
             "screen_name": "test_screen_name",
-            "display_name": "test_display_name"
         }
 
     def tearDown(self):
